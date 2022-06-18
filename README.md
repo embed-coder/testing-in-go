@@ -66,6 +66,4 @@ All the test cases can be run all in once by select the run test button on examp
 
 ## 📃 Bucket list <a name = "bucket_list"></a>
 
--
--
--
+- Make a Fake that Can Deal with Concurrency: use sync.Mutex to lock and unlock the channels.
