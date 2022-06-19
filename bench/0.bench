@@ -1,0 +1,7 @@
+goos: linux
+goarch: amd64
+pkg: hello/bench
+cpu: 11th Gen Intel(R) Core(TM) i9-11900KF @ 3.50GHz
+BenchmarkSolve-16    	  268384	     55571 ns/op	   62192 B/op	     501 allocs/op
+PASS
+ok  	hello/bench	15.569s

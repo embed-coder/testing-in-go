@@ -1,0 +1,51 @@
+Example follows Golang Cafe (https://golang.cafe, https://www.youtube.com/watch?v=HEwSkhr_8_M)
+Each line gives the password policy and then the password.
+The password policy indicates the lowest and highest number of times
+a given letter must appear for the password to be valid.
+
+1-3 a: aabacd
+4-4 b: bbaaacd
+...
+
+For example, '1-3 a' means that the password must contain
+'a' at least 1 time and at most 3 times.
+
+Install benchcmp to compare benchmarks (optional)
+$ go get golang.org/x/tools/cmd/benchcmp
+
+How to run your profiler with benchmarks
+$ go test -run=XXX -bench=. -benchmem -memprofile mem.pprof -cpuprofile cpu.pprof -benchtime=10s
+
+How to view profiling data (interactive shell)
+$ go tool pprof cpu.pprof
+
+How to view interactive web profiling analysis (opens up an interactive web page)
+$ go tool pprof cpu.pprof -http=:8080
+
+Start bench the test
+$ go test -bench=. -run=XXX -benchmem -memprofile mem.prof -cpuprofile cpu.prof -benchtime=10s > 0.bench
+
+To analyse the cpu.prof or mem.prof
+$ go tool pprof cpu.prof
+to see the top 20
+(pprof) top 20
+To view the graph on the web
+(pprof) web
+To view detail performance on each line of code (hello/bench.solve in the top list above)
+(pprof) list hello/bench.solve
+list supported commands
+(pprof) help
+
+After apply the new code, run again the benchmark
+$ go test -bench=. -run=XXX -benchmem -memprofile mem.prof -cpuprofile cpu.prof -benchtime=10s > 1.bench
+
+Benchmarks Before & After
+$ benchcmp 0.bench 3.bench
+benchmark old ns/op new ns/op delta
+BenchmarkSolve-4 7250767 791637 -89.08%
+
+benchmark old allocs new allocs delta
+BenchmarkSolve-4 50060 2002 -96.00%
+
+benchmark old bytes new bytes delta
+BenchmarkSolve-4 6167372 199288 -96.77%
